@@ -13,6 +13,7 @@
 		8D93341F24CAA5D700C11D75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D93341D24CAA5D700C11D75 /* Main.storyboard */; };
 		8D93342124CAA5D900C11D75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D93342024CAA5D900C11D75 /* Assets.xcassets */; };
 		8D93342424CAA5D900C11D75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D93342224CAA5D900C11D75 /* LaunchScreen.storyboard */; };
+		8D93342C24CAA69700C11D75 /* metalTest.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8D93342B24CAA69700C11D75 /* metalTest.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8D93342024CAA5D900C11D75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D93342324CAA5D900C11D75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D93342524CAA5D900C11D75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D93342B24CAA69700C11D75 /* metalTest.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = metalTest.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				8D93341724CAA5D700C11D75 /* AppDelegate.swift */,
 				8D93341924CAA5D700C11D75 /* SceneDelegate.swift */,
 				8D93341B24CAA5D700C11D75 /* ViewController.swift */,
+				8D93342B24CAA69700C11D75 /* metalTest.metal */,
 				8D93341D24CAA5D700C11D75 /* Main.storyboard */,
 				8D93342024CAA5D900C11D75 /* Assets.xcassets */,
 				8D93342224CAA5D900C11D75 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				8D93341C24CAA5D700C11D75 /* ViewController.swift in Sources */,
 				8D93341824CAA5D700C11D75 /* AppDelegate.swift in Sources */,
 				8D93341A24CAA5D700C11D75 /* SceneDelegate.swift in Sources */,
+				8D93342C24CAA69700C11D75 /* metalTest.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
