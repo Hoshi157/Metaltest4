@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     private var commandQuere: MTLCommandQueue!
     
+    // シェーダに渡すデータ(Float配列(x, y, z, w) )軸域 = -1 ~ 1
     private let vertexData: [Float] = [
         -1, -1, 0, 1,
         1, -1, 0, 1,
@@ -22,11 +23,11 @@ class ViewController: UIViewController {
         1, 1, 0, 1
     ]
     
-    private var vertexBuffer: MTLBuffer!
+    private var vertexBuffer: MTLBuffer! // シェーダに渡すBufferを保持
     
-    private var renderPipeline: MTLRenderPipelineState!
+    private var renderPipeline: MTLRenderPipelineState! // パイプライン(レンダリングの一連の処理)
     
-    private let renderPassDescriptor = MTLRenderPassDescriptor()
+    private let renderPassDescriptor = MTLRenderPassDescriptor() // レンダリング先のtextureの設定
     
 
     override func viewDidLoad() {
@@ -42,25 +43,26 @@ class ViewController: UIViewController {
         commandQuere = device.makeCommandQueue()!
         
         
-        
-        
-        
-        
+        // vertexBufferにデータ(シェーダに渡す)を格納
         let size = vertexData.count * MemoryLayout<Float>.size
         
         vertexBuffer = device.makeBuffer(bytes: vertexData, length: size)
         
         
         
-        guard let library = device.makeDefaultLibrary() else { fatalError() }
         
-        let descriptor = MTLRenderPipelineDescriptor()
+        guard let library = device.makeDefaultLibrary() else { fatalError() } // Metalライブラリ
         
+        let descriptor = MTLRenderPipelineDescriptor() // パイプラインの設定を記載するクラス(ディスクリプター)
+        
+        // ディスクリプターにシェーダ関数をセット
         descriptor.vertexFunction = library.makeFunction(name: "vertexShader")
         descriptor.fragmentFunction = library.makeFunction(name: "fragmentShader")
         
+        // ピクセルフォーマット
         descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         
+        // パイプラインを作成する
         renderPipeline = try! device.makeRenderPipelineState(descriptor: descriptor)
         
         
@@ -95,18 +97,20 @@ extension ViewController: MTKViewDelegate {
         
         //  ************************* Metaltest1とちがう
         
-        
+        // ここでtextureを設定
         renderPassDescriptor.colorAttachments[0].texture = drawable.texture
         
-        
+        // エンコード
         let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
         
         guard let renderPipeline = renderPipeline else { fatalError() }
         
+        // エンコードの設定
         renderEncoder.setRenderPipelineState(renderPipeline)
         
         renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         
+        // triangleStrip(四角形に描画)
         renderEncoder.drawPrimitives(type: .triangleStrip,
                                       vertexStart: 0,
                                       vertexCount: 4)
@@ -116,7 +120,7 @@ extension ViewController: MTKViewDelegate {
         
         
         
-        renderEncoder.endEncoding() // エンコード
+        renderEncoder.endEncoding() // エンコード終了
         
         commandBuffer.present(drawable) // bufferに追加
         
